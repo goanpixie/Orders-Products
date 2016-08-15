@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src='bower_components/angular/angular.js'></script>
+    <script type="text/javascript" src="./app.js"></script>
+    </script>
+    <title></title>
+</head>
+
+<body>
+    <div ng-app="myApp">
+    {{2+2}}
+        <div ng-controller="ProductsController as vm">
+            <label for="Product">Product</label>
+            <input type="text" ng-model="vm.product.productName">
+            <label for="Product Price">Product Price</label>
+            <input type="text" ng-model="vm.product.productPrice">
+            <span ng-model="vm.product.Quantity"></span>
+
+            <button type="button" ng-click="vm.createProduct()">Create Product</button>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Product Price</th>
+                    
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    
+                    <tr ng-repeat="p in vm.productList track by $index">
+                        <td>{{p.productName}}</td>
+                        <td>{{p.productPrice | currency}}</td>
+                        
+                        <td>
+                            <button ng-click="vm.deleteProduct($index)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div ng-controller="OrdersController as om">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Product Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    <tr ng-repeat="p in om.productList track by $index">
+                        <td>{{p.productName}}</td>
+                        <td>{{p.productPrice | currency}}</td>
+                        <td>{{p.productQuantity}}</td>
+                        <td>
+                            <button ng-click="om.buyProduct($index)">Buy</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
